@@ -1,14 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-using KeePass.Forms;
 using KeePass.Plugins;
-using KeePass.Resources;
-using KeePass.UI;
-
-using KeePassLib;
-using KeePassLib.Security;
-using KeePassLib.Utility;
 
 namespace KeePassQuery
 {
@@ -17,7 +10,6 @@ namespace KeePassQuery
 		//public override Image SmallIcon { get { return Properties.Resources.icon; } }
 
 		//public override string UpdateUrl { get { return "https://github.com/....../keepass.version"; } }
-
 
 		private IPluginHost _pluginHost;
 
@@ -31,21 +23,21 @@ namespace KeePassQuery
 		
 		public override ToolStripMenuItem GetMenuItem(PluginMenuType t)
 		{
-			// Provide a menu item for the main location(s)
-			if(t == PluginMenuType.Main)
-			{
-				ToolStripMenuItem tsmi = new ToolStripMenuItem();
-				tsmi.Text = "Abcd Options";
-				tsmi.Click += this.OnOptionsClicked;
-				return tsmi;
-			}
+			if(t != PluginMenuType.Main) return null;
 
-			return null; // No menu items in other locations
+			ToolStripMenuItem tsmi = new ToolStripMenuItem();
+			tsmi.Text = "KeePassQuery";
+			tsmi.Click += this.OnOptionsClicked;
+			return tsmi;
 		}
 
 		private void OnOptionsClicked(object sender, EventArgs e)
 		{
-			// Called when the menu item is clicked
+			var db = new KPDatabase(_pluginHost);
+			db.InitData();
+
+			QueryForm qf = new QueryForm(db);
+			qf.Show();
 		}
 
 		public override void Terminate()

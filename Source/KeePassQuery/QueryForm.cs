@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+using System.Data.SQLite;
 using System.Drawing;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace KeePassQuery
@@ -18,12 +13,35 @@ namespace KeePassQuery
 		public QueryForm(KPDatabase db)
 		{
 			InitializeComponent();
-			typeof(DataGridView).InvokeMember("DoubleBuffered", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.SetProperty, null, resultView, new object[] { true });
-
 			_db = db;
+			
+			typeof(DataGridView).InvokeMember("DoubleBuffered", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.SetProperty, null, resultView, new object[] { true });
+			edError.ReadOnly = true;
+			edError.BackColor = SystemColors.Window;
+			resultView.Visible = true;
+			edError.Visible = false;
 		}
 
-		private void btnRun_Click(object sender, EventArgs e)
+		private void OnClickRun(object sender, EventArgs e)
+		{
+			RunQuery();
+		}
+
+		private void OnClickSettings(object sender, EventArgs e)
+		{
+
+		}
+
+		private void OnKeyPress(object sender, KeyPressEventArgs e)
+		{
+			if (e.KeyChar == (char)Keys.Return)
+			{
+				e.Handled = true;
+				RunQuery();
+			}
+		}
+
+		private void RunQuery()
 		{
 			try
 			{
@@ -32,10 +50,20 @@ namespace KeePassQuery
 				var data = _db.Query(sql);
 
 				resultView.DataSource = data;
+				resultView.Visible = true;
+				edError.Visible = false;
+			}
+			catch (SQLiteException ex)
+			{
+				edError.Text = ex.Message;
+				resultView.Visible = false;
+				edError.Visible = true;
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show(this, ex.ToString());
+				edError.Text = ex.Message;
+				resultView.Visible = false;
+				edError.Visible = true;
 			}
 		}
 	}

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 using KeePass.Plugins;
@@ -7,9 +8,9 @@ namespace KeePassQuery
 {
 	public class KeePassQueryExt : Plugin
 	{
-		//public override Image SmallIcon { get { return Properties.Resources.icon; } }
+		public override Image SmallIcon { get { return Properties.Resources.appicon; } }
 
-		//public override string UpdateUrl { get { return "https://github.com/....../keepass.version"; } }
+		public override string UpdateUrl { get { return "https://www.mikescher.com/api/update/KeePassQuery?format=keepass2"; } }
 
 		private IPluginHost _pluginHost;
 
@@ -27,7 +28,8 @@ namespace KeePassQuery
 
 			ToolStripMenuItem tsmi = new ToolStripMenuItem();
 			tsmi.Text = "KeePassQuery";
-			tsmi.Click += this.OnOptionsClicked;
+			tsmi.Click += OnOptionsClicked;
+			tsmi.Image = SmallIcon;
 			return tsmi;
 		}
 

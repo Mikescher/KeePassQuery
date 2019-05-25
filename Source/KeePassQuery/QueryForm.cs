@@ -3,17 +3,20 @@ using System.Data.SQLite;
 using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
+using KeePass.Plugins;
 
 namespace KeePassQuery
 {
 	public partial class QueryForm : Form
 	{
+		private readonly IPluginHost _host;
 		private readonly KPDatabase _db;
 
-		public QueryForm(KPDatabase db)
+		public QueryForm(KPDatabase db, IPluginHost host)
 		{
 			InitializeComponent();
 			_db = db;
+			_host = host;
 			
 			typeof(DataGridView).InvokeMember("DoubleBuffered", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.SetProperty, null, resultView, new object[] { true });
 			edError.ReadOnly = true;
@@ -29,7 +32,7 @@ namespace KeePassQuery
 
 		private void OnClickSettings(object sender, EventArgs e)
 		{
-			new SettingsForm().ShowDialog(this);
+			new SettingsForm(_host).ShowDialog(this);
 		}
 
 		private void OnClickInfo(object sender, EventArgs e)
@@ -50,6 +53,8 @@ namespace KeePassQuery
 		{
 			try
 			{
+				//TODO check if db changed - and re-init
+
 				var sql = edSQL.Text;
 
 				var data = _db.Query(sql);

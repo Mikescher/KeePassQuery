@@ -40,7 +40,7 @@ namespace KeePassQuery
 			var db = new KPDatabase(_pluginHost);
 			db.InitData();
 
-			QueryForm qf = new QueryForm(db);
+			QueryForm qf = new QueryForm(db, _pluginHost);
 			qf.Show();
 		}
 

@@ -37,7 +37,7 @@ namespace KeePassQuery
 		{
 			var dm = _host.MainWindow.DocumentManager;
 
-			var opt = new KPQOptions();//TODO;
+			var opt = KPQOptions.Load(_host.Database);
 
 			InitData("Entries", new[]{"UUID"}, ListAllEntries(dm, opt, false).Select(e => GetFields(dm, e.Item1, e.Item2, opt)));
 
@@ -184,8 +184,8 @@ namespace KeePassQuery
 			result["Icon_ID"]          = e.CustomIconUuid == null ? ((int)e.IconId).ToString() : e.CustomIconUuid.ToHexString();
 			result["Icon_IsCustom"]    = e.CustomIconUuid != null ? "true" : "false";
 			
-			result["Parent_Name"]      = e.ParentGroup.Name;
-			result["Parent_UUID"]      = e.ParentGroup.Uuid.ToHexString();
+			result["Parent_Name"]      = e.ParentGroup==null ? null : e.ParentGroup.Name;
+			result["Parent_UUID"]      = e.ParentGroup==null ? null : e.ParentGroup.Uuid.ToHexString();
 			result["Path_Names"]       = GetPath(e, p => p.Name, "/");
 			result["Path_UUIDs"]       = GetPath(e, p => p.Uuid.ToHexString(), "/");
 
@@ -294,6 +294,8 @@ namespace KeePassQuery
 
 		private string GetPath(PwEntry e, Func<PwGroup, string> sel, string delim)
 		{
+			if (e.ParentGroup == null) return delim;
+
 			var glist = new List<PwGroup>();
 
 			var g = e.ParentGroup;
@@ -305,7 +307,7 @@ namespace KeePassQuery
 				glist.Add(g);
 			}
 
-			return string.Join(delim, glist.Select(sel));
+			return delim + string.Join(delim, glist.Select(sel));
 		}
 
 		private string CleanStringForColumnKey(string key)

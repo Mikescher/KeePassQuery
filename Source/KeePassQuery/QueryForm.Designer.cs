@@ -28,18 +28,19 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QueryForm));
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-			this.edSQL = new System.Windows.Forms.TextBox();
-			this.resultView = new System.Windows.Forms.DataGridView();
 			this.btnRun = new System.Windows.Forms.Button();
 			this.btnConfig = new System.Windows.Forms.Button();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.edSQL = new System.Windows.Forms.TextBox();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.resultView = new System.Windows.Forms.DataGridView();
 			this.edError = new System.Windows.Forms.TextBox();
 			this.tableLayoutPanel1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.resultView)).BeginInit();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.resultView)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// tableLayoutPanel1
@@ -55,35 +56,11 @@
 			this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-			this.tableLayoutPanel1.RowCount = 3;
+			this.tableLayoutPanel1.RowCount = 2;
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
 			this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 450);
 			this.tableLayoutPanel1.TabIndex = 0;
-			// 
-			// edSQL
-			// 
-			this.edSQL.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.edSQL.Location = new System.Drawing.Point(0, 3);
-			this.edSQL.Name = "edSQL";
-			this.edSQL.Size = new System.Drawing.Size(698, 20);
-			this.edSQL.TabIndex = 0;
-			this.edSQL.Text = "SELECT * FROM Entries";
-			this.edSQL.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnKeyPress);
-			// 
-			// resultView
-			// 
-			this.resultView.AllowUserToAddRows = false;
-			this.resultView.AllowUserToDeleteRows = false;
-			this.resultView.AllowUserToOrderColumns = true;
-			this.resultView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.resultView.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.resultView.Location = new System.Drawing.Point(0, 0);
-			this.resultView.Name = "resultView";
-			this.resultView.ReadOnly = true;
-			this.resultView.Size = new System.Drawing.Size(794, 392);
-			this.resultView.TabIndex = 1;
 			// 
 			// btnRun
 			// 
@@ -117,6 +94,16 @@
 			this.panel1.Size = new System.Drawing.Size(698, 26);
 			this.panel1.TabIndex = 4;
 			// 
+			// edSQL
+			// 
+			this.edSQL.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.edSQL.Location = new System.Drawing.Point(0, 3);
+			this.edSQL.Name = "edSQL";
+			this.edSQL.Size = new System.Drawing.Size(698, 20);
+			this.edSQL.TabIndex = 0;
+			this.edSQL.Text = "SELECT * FROM Entries";
+			this.edSQL.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnKeyPress);
+			// 
 			// panel2
 			// 
 			this.tableLayoutPanel1.SetColumnSpan(this.panel2, 3);
@@ -125,8 +112,21 @@
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel2.Location = new System.Drawing.Point(3, 35);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(794, 392);
+			this.panel2.Size = new System.Drawing.Size(794, 412);
 			this.panel2.TabIndex = 5;
+			// 
+			// resultView
+			// 
+			this.resultView.AllowUserToAddRows = false;
+			this.resultView.AllowUserToDeleteRows = false;
+			this.resultView.AllowUserToOrderColumns = true;
+			this.resultView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.resultView.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.resultView.Location = new System.Drawing.Point(0, 0);
+			this.resultView.Name = "resultView";
+			this.resultView.ReadOnly = true;
+			this.resultView.Size = new System.Drawing.Size(794, 412);
+			this.resultView.TabIndex = 1;
 			// 
 			// edError
 			// 
@@ -136,7 +136,7 @@
 			this.edError.Multiline = true;
 			this.edError.Name = "edError";
 			this.edError.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.edError.Size = new System.Drawing.Size(794, 392);
+			this.edError.Size = new System.Drawing.Size(794, 412);
 			this.edError.TabIndex = 6;
 			// 
 			// QueryForm
@@ -145,14 +145,15 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
 			this.Controls.Add(this.tableLayoutPanel1);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "QueryForm";
-			this.Text = "QueryForm";
+			this.Text = "KeePassQuery";
 			this.tableLayoutPanel1.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.resultView)).EndInit();
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			this.panel2.ResumeLayout(false);
 			this.panel2.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.resultView)).EndInit();
 			this.ResumeLayout(false);
 
 		}

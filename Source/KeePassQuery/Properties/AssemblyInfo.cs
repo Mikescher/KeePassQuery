@@ -14,5 +14,5 @@ using System.Runtime.InteropServices;
 
 [assembly: Guid("26d7ddac-7c2b-4537-a025-77a295a3a2d9")]
 
-[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.0.0.0")]      // also update KeePassQueryExt.cs
 [assembly: AssemblyFileVersion("1.0.0.0")]

@@ -29,7 +29,12 @@ namespace KeePassQuery
 
 		private void OnClickSettings(object sender, EventArgs e)
 		{
+			new SettingsForm().ShowDialog(this);
+		}
 
+		private void OnClickInfo(object sender, EventArgs e)
+		{
+			new InfoForm().ShowDialog(this);
 		}
 
 		private void OnKeyPress(object sender, KeyPressEventArgs e)

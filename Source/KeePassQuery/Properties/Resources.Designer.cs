@@ -73,9 +73,29 @@ namespace KeePassQuery.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap appicon_big {
+            get {
+                object obj = ResourceManager.GetObject("appicon_big", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cog {
             get {
                 object obj = ResourceManager.GetObject("cog", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap info {
+            get {
+                object obj = ResourceManager.GetObject("info", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

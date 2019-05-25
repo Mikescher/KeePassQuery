@@ -8,6 +8,8 @@ namespace KeePassQuery
 {
 	public class KeePassQueryExt : Plugin
 	{
+		public static readonly Version VERSION = new Version(1, 0, 0, 0);
+
 		public override Image SmallIcon { get { return Properties.Resources.appicon; } }
 
 		public override string UpdateUrl { get { return "https://www.mikescher.com/api/update/KeePassQuery?format=keepass2"; } }
